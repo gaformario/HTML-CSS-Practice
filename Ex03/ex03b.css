@@ -1,0 +1,109 @@
+html {
+	font-size: 16px;
+}
+
+body {
+	font-family: 'Open Sans';
+	margin: 0;
+}
+
+.limitador {
+	max-width: 1200px;
+	margin: 0 auto;
+	box-shadow: 0 0 4rem black;
+}
+
+h1 {
+	font-family: 'Montserrat Alternates';
+	font-weight: normal;
+	font-size: 2rem;
+	margin: 0 0 0.5rem;
+
+	
+}
+
+a {
+	text-decoration: none;
+	border-radius: 999rem;
+	padding: 0.5rem 1rem;
+	font-size: 0.75rem;
+	font-weight: bold;
+	box-shadow: 0.25rem 0.25rem 1rem rgba(0, 0, 0, 0.5);
+}
+
+.secao1 {
+	background-image: url(img/farol.jpg);
+	background-size: cover;
+	background-position: right center;
+	padding: 15rem 2rem;
+	text-align: center;
+	color: white;
+}
+
+.limitador1 {
+	max-width: 26rem;
+	margin: 0 auto;
+}
+
+.secao1 a {
+	background: lime; /*linear-gradient(to bottom, #1e5799 0%,#2989d8 50%,#207cca 51%,#7db9e8 100%)'*/ /* gradiente*/
+	color: black;
+	
+}
+
+.secao2 {
+	background-image: url(img/fundobranco.webp);
+	background-size: cover;
+	background-position: center center;
+	padding: 15rem 2rem;
+	text-align: left;
+	color: black;
+}
+
+.limitador2 {
+	max-width: 25rem;
+	
+}
+
+.secao2 a {
+	background-color: #0066ff;
+	color: white;
+}
+
+.secao3 {
+	background-image: url(img/fundoLaranja.jpeg);
+	/*background-size: cover;*/
+	background-position: right center;
+	padding: 15rem 2rem;
+	text-align: left;
+	color: white;
+}
+
+.limitador3 {
+	max-width: 25rem;
+	margin: 0 0 0 auto;
+}
+
+.secao3 a {
+	background-color: #44bbff;
+	color: black;
+}
+
+.secao4 {
+	background-image: url(img/laranja2.jpeg);
+	background-size: cover;
+	background-position: center center;
+	padding: 15rem 2rem;
+	text-align: left;
+	color: black;
+}
+
+.limitador4 {
+	max-width: 24rem;
+	
+}
+
+.secao4 p {
+	color: white;
+
+}
