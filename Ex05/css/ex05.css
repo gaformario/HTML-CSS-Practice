@@ -1,0 +1,120 @@
+html {
+	font-size: 16px;
+}
+
+body {
+	font-family: 'Open Sans';
+	margin: 0;
+}
+
+.limitador {
+	max-width: 1200px;
+	margin: 0 auto;
+	box-shadow: 0 0 4rem black;
+
+}
+.secao1 {
+	background-image: url(../img/arvore.png);
+	background-size: cover;
+	background-position: center center;
+	padding: 15rem 2rem;
+	text-align: left;
+	color: black;
+}
+
+.secao1 span {
+	color: red;
+}
+.limitador1 {
+	max-width: 25rem;
+	
+}
+
+.secao1 h1 {
+	font-size: 3rem;
+	font-weight:bold;
+    max-width: 25rem;
+
+}
+
+.secao-sobre {
+    padding: 5rem 2rem;
+	/*background-color: antiquewhite;*/
+	min-height: 100%;
+    
+
+}
+.secao-sobre p {
+	font-weight: bold;
+}	
+.secao-sobre p {
+	color: #bdbbc3;
+}
+.secao-sobre img {
+	max-width:100%;
+	border-radius: 1rem;
+}
+
+.coluna-sobre p{
+	padding-bottom: 1.5rem;
+	padding-top: 1.5rem;
+	
+}
+
+.secao-item {
+    padding: 5rem 2rem;
+	background-color:#f8f9fc;
+}
+
+.secao-item container-fluid {
+	padding-left: 0rem;
+
+}
+
+.limitador-item {
+	max-width: 25rem;
+    margin: 0 auto;
+}
+
+.limitador-item h1 {
+	font-weight: bold;
+}
+
+.secao-item p {
+	color:#bdbbc3;
+}
+
+.coluna {
+    padding: 0.5rem;
+}
+
+.coluna-item1 {
+	padding: 1rem 1rem 1rem 0rem;
+}
+
+.fundinho {
+	background-color: #f6f6f6;
+	padding: 1rem;
+	border-radius: 1rem;
+	min-height: 100%;
+	
+
+}
+
+.fundinho2 {
+	background-color: #f6f6f6;
+	padding: 1rem 1rem 1rem 0rem;
+	border-radius: 1rem;
+	min-height: 100%;
+	
+
+}
+
+.fundinho p {
+	color:black;
+}
+
+.fundinho h2 {
+	font-size: 1.5rem;
+	font-weight:bold;
+}
