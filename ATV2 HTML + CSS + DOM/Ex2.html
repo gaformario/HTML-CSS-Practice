@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tela de Entrada de Senha</title>
+  <style>
+    button {
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+<body>
+  <label> Senha </label>
+  <input type="password" id="senha">
+  <br>
+
+  <button onclick="adicionarDigito(1)">1</button>
+  <button onclick="adicionarDigito(2)">2</button>
+  <button onclick="adicionarDigito(3)">3</button>
+  <br>
+  <button onclick="adicionarDigito(4)">4</button>
+  <button onclick="adicionarDigito(5)">5</button>
+  <button onclick="adicionarDigito(6)">6</button>
+  <br>
+  <button onclick="adicionarDigito(7)">7</button>
+  <button onclick="adicionarDigito(8)">8</button>
+  <button onclick="adicionarDigito(9)">9</button>
+  <br>
+  <button onclick="adicionarDigito(0)">0</button>
+  <button onclick="validarSenha()">Validar</button>
+
+  <div id="mensagem"></div>
+
+  <script>
+    let senhaInput = document.getElementById('senha');
+    let mensagemDiv = document.getElementById('mensagem');
+    let senha = '';
+
+    function adicionarDigito(digito) {
+      senha += digito;
+      senhaInput.value = senha;
+    }
+
+    function validarSenha() {
+      if (senhaInput.value === '1234') {
+        mensagemDiv.innerHTML = 'Senha correta. Acesso permitido.'
+      } else {
+        mensagemDiv.innerHTML = 'Senha incorreta. Tente novamente.'
+      }
+      senhaInput.value = ''
+    }
+  </script>
+</body>
+</html>

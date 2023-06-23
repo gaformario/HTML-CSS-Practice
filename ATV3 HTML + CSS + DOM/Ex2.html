@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <title>EX3</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="mt-3">EX3 - Atividade Final</h1>
+      <p>Informe os dados abaixo:</p>
+      <div class="form-group">
+        <label for="pontuacaoMinima">Pontuação mínima:</label>
+        <input type="number" class="form-control" id="pontuacaoMinima">
+      </div>
+      <div class="form-group">
+        <label for="totalCompetidores">Total de competidores:</label>
+        <input type="number" class="form-control" id="totalCompetidores">
+      </div>
+      <button class="btn btn-primary" onclick="criarCompetidores()">Criar</button>
+      <button class="btn btn-primary" onclick="calcularConvidados()">Calcular</button>
+      <br><br>
+      <div class="m-2" id="competidoresContainer"></div>
+      <div class="m-2" id="resultado"></div>
+      <!--<div id="total"></div>-->
+    </div>
+
+    <script>
+      function criarCompetidores() {
+        let totalCompetidores = parseInt(document.getElementById("totalCompetidores").value);
+        let competidoresContainer = document.getElementById("competidoresContainer");
+        competidoresContainer.innerHTML = "";
+
+        if (totalCompetidores === '' || isNaN(totalCompetidores)) {
+            Swal.fire(
+                'Erro ao criar',
+                'Algo deu errado no seu cadastro. Por favor preencha todos os campos',
+                'error'
+                )
+            return; 
+        }
+        else {
+            Swal.fire(
+                'Criar',
+                'Competidores criados com sucesso',
+                'success'
+                )
+            }
+
+        for (let i = 1; i <= totalCompetidores; i++) {
+          let competidorDiv = document.createElement("div");
+          competidorDiv.classList.add("competidor");
+
+          let nomeLabel = document.createElement("label-input");
+          nomeLabel.textContent = "Competidor " + i + ": ";
+
+          let nota1Input = document.createElement("input");
+          nota1Input.type = "number";
+          nota1Input.classList.add("nota1");
+
+          let nota2Input = document.createElement("input");
+          nota2Input.type = "number";
+          nota2Input.classList.add("nota2");
+
+          competidorDiv.appendChild(nomeLabel);
+          competidorDiv.appendChild(nota1Input);
+          competidorDiv.appendChild(nota2Input);
+          competidoresContainer.appendChild(competidorDiv);
+    }
+
+}
+
+    function calcularConvidados() {
+        let pontuacaoMinima = parseInt(document.getElementById("pontuacaoMinima").value);
+        let competidoresConvidados = 0;
+
+        if (isNaN(pontuacaoMinima)) {
+            Swal.fire(
+            'Erro ao calcular',
+            'Algo deu errado no cálculo. Por favor, preencha a pontuação mínima corretamente',
+            'error'
+            );
+            return;
+        }
+
+        let competidores = document.getElementsByClassName("competidor");
+        for (let i = 0; i < competidores.length; i++) {
+            let nota1 = parseInt(competidores[i].getElementsByClassName("nota1")[0].value);
+            let nota2 = parseInt(competidores[i].getElementsByClassName("nota2")[0].value);
+
+            if (isNaN(nota1) || isNaN(nota2)) {
+            Swal.fire(
+                'Erro ao calcular',
+                'Algo deu errado no cálculo. Por favor, preencha todas as notas corretamente',
+                'error'
+            );
+            return;
+            }
+            
+
+            if (nota1 + nota2 >= pontuacaoMinima) {
+            competidoresConvidados++;
+            }
+        }
+
+        let resultadoDiv = document.getElementById("resultado");
+        resultadoDiv.innerHTML = "Número de competidores convidados: " + competidoresConvidados;
+    }
+
+
+    </script>
+
+  </body>
+  
+</html>

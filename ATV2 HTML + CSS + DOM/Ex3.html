@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tabela de Pessoas</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        th, td { 
+            padding: 8px;
+        }
+
+        button {
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="preencherTabela()">Preencher Tabela</button>
+    <table id="tabelaPessoas" border="1">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Idade</th>
+                <th>Cargo</th>
+            </tr>
+        </thead>
+        <tbody id="corpoTabela"></tbody>
+    </table>
+
+    <script>
+        let pessoas = [
+            {
+                id: 1,
+                nome: "André",
+                email: "andre@espm.br",
+                idade: 36,
+                cargo: "Professor"
+            },
+            {
+                id: 2,
+                nome: "Beto",
+                email: "beto@espm.com",
+                idade: 25,
+                cargo: "Técnico"
+            },
+            {
+                id: 3,
+                nome: "Carlos",
+                email: "carlos@espm.com",
+                idade: 38,
+                cargo: "Professor"
+            },
+            {
+                id: 4,
+                nome: "Ana",
+                email: "ana@espm.com",
+                idade: 31,
+                cargo: "Arquiteta"
+            },
+            {
+                id: 5,
+                nome: "Pedro",
+                email: "pedro@espm.com",
+                idade: 39,
+                cargo: "Médico"
+            },
+            {
+                id: 6,
+                nome: "Carla",
+                email: "carla@espm.com",
+                idade: 25,
+                cargo: "Designer"
+            },
+            {
+                id: 7,
+                nome: "Lucas",
+                email: "lucas@espm.br",
+                idade: 29,
+                cargo: "Estudante"
+            },
+            {
+                id: 8,
+                nome: "Mariana",
+                email: "mariana@espm.com",
+                idade: 33,
+                cargo: "Empresária"
+            },
+            {
+                id: 9,
+                nome: "Rodrigo",
+                email: "rodrigo@espm.com",
+                idade: 37,
+                cargo: "Analista"
+            },
+            {
+                id: 10,
+                nome: "Juliana",
+                email: "juliana@espm.com",
+                idade: 27,
+                cargo: "Programadora"
+            }
+        ];
+
+        function preencherTabela() {
+            let corpoTabela = document.getElementById('corpoTabela')
+
+            
+            corpoTabela.innerHTML = ''
+
+            pessoas.forEach(function(pessoa) {
+                let row = document.createElement('tr')
+
+                let idCell = document.createElement('td')
+                idCell.textContent = pessoa.id
+                row.appendChild(idCell)
+
+                let nomeCell = document.createElement('td')
+                nomeCell.textContent = pessoa.nome
+                row.appendChild(nomeCell)
+
+                let emailCell = document.createElement('td')
+                emailCell.textContent = pessoa.email
+                row.appendChild(emailCell)
+
+                let idadeCell = document.createElement('td')
+                idadeCell.textContent = pessoa.idade
+                row.appendChild(idadeCell)
+
+                let cargoCell = document.createElement('td')
+                cargoCell.textContent = pessoa.cargo
+                row.appendChild(cargoCell)
+
+                corpoTabela.appendChild(row)
+            })
+        }
+    </script>
+</body>
+</html>

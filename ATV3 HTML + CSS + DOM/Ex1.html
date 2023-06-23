@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Atividade Final</title>
+
+	<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.min.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates&family=Open+Sans&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" type="text/css" rel="stylesheet" id="bootstrapCSS"/><style type="text/css"></style>
+
+
+
+	<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
+
+</head>
+<body>
+	<h2 class="mt-3">EX1 & EX2 - Atividade Final</h2>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-6 py-2">
+				<div class="card">
+					<h5 class="card-header">DADOS DE CADASTRO JOGOS</h5>
+					<div class="card-body">
+						<form id="formCadastro">
+							<div class="form-row">
+								<div class="form-group col-md-6">
+									<label for="inputNome">Nome</label>
+									<input type="text" class="form-control" id="inputNome" placeholder="Digite nome do jogo">
+								</div>
+								<div class="form-group col-md-6">
+									<label for="inputDesc">Descrição</label>
+									<input type="text" class="form-control" id="inputDesc" placeholder="Digite a descrição">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputProd">Produtora</label>
+								<input type="text" class="form-control" id="inputProd" placeholder="Digite a produtora">
+							</div>
+							<div class="form-row">
+								<div class="form-group col-md-6">
+									<label for="inputAno">Ano</label>
+									<input type="number" class="form-control" id="inputAno" placeholder="Digite o ano">
+								</div>
+								<div class="form-group col-md-6">
+									<label for="inputIdade">Idade Minima</label>
+									<input type="number" class="form-control" id="inputIdade" placeholder="Digite idade minima">
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+		<div class="row">
+			<div class="col-md-6 py-2">
+				<button type="button" class="btn btn-primary" onclick="criarDados()">Criar</button>
+				<button type="button" class="btn btn-primary" onclick="buscarDados()">Fetch</button>
+				
+			</div>
+		</div>
+	</div>
+	
+
+	<div class="container-fluid pt-3">
+        <div id="divJogos">
+        </div>
+    </div>
+
+	<script>
+		async function buscarDados() {
+
+			let response = await fetch("https://academico.espm.br/testeapi/jogo/listar")
+
+			let lista = await response.json()
+
+			let html = ""
+
+			let cores = ["bg-primary", "bg-secondary", "bg-success", "bg-danger", "bg-warning", "bg-info", "bg-light", "bg-dark"]
+
+			let cores_texto = ["text-white", "text-white", "text-white", "text-white", "text-white", "text-white", "", "text-white"]
+
+			for (let i = 0; i < lista.length; i++) {
+                let jogo = lista[i];
+				if (i % 3 === 0) {
+					html += '<div class="row">'
+				}
+					
+
+				let cor = cores[i % cores.length]
+				let texto = cores_texto[i % cores_texto.length]
+
+				html += `
+				<div class="col-sm-4">
+					<div class="card ${texto} ${cor} mb-3">
+						<div class="card-header">${jogo.nome}</div>
+						<div class="card-body">
+							<h5 class="card-title">${jogo.id}</h5>
+							<p class="card-text">${jogo.descricao}</p>
+                            <p class="card-text">${jogo.produtora}</p>
+                            <p class="card-text">${jogo.ano}</p>
+                            <p class="card-text">${jogo.idadeMinima}</p>
+						</div>
+					</div>
+				</div>
+			`
+			
+			if (i % 3 === 2 || i === lista.length - 1) {
+				html += '</div>'
+			 }
+			}
+
+            let div = document.getElementById("divJogos")
+            div.innerHTML = html
+
+		}
+
+		async function criarDados() {
+			nome = document.getElementById("inputNome").value
+			descricao = document.getElementById("inputDesc").value
+            produtora = document.getElementById("inputProd").value
+            ano = document.getElementById("inputAno").value
+            idadeMinima = document.getElementById("inputIdade").value
+
+			let jogo = {
+                "nome": nome,
+                "descricao": descricao,
+                "produtora": produtora,
+                "ano": ano,
+                "idadeMinima": idadeMinima
+            }
+
+			let response = await fetch("https://academico.espm.br/testeapi/jogo/criar", {
+				method: "POST",
+				body: JSON.stringify(jogo),
+				headers: {
+					"content-type": "application/json"
+					
+				}
+			})
+
+			if (nome === '' || descricao === '' || produtora === '' || ano === '' || idadeMinima === '') {
+				Swal.fire(
+					'Erro no cadastro',
+					'Algo deu errado no seu cadastro. Por favor preencha todos os campos',
+					'error'
+					)
+				return; 
+			}
+			else {
+				Swal.fire(
+					'Cadastro',
+					'Jogo criado com sucesso',
+					'success'
+					)
+
+			}
+
+			document.getElementById("formCadastro").reset()
+		}
+
+	</script>
+
+</body>
+</html>

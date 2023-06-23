@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Encontre o Card Faltante</title>
+  
+  <style>
+
+    .caixaInput {
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    .valorInput {
+        width: 140px; 
+        height: 20px; 
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <form>
+
+    <div class="caixaInput">
+      <label for="card1">Valor A</label><br>
+      <input type="number" id="card1" class="valorInput">
+    </div>
+    <div class="caixaInput">
+      <label for="card2">Valor B</label><br>
+      <input type="number" id="card2" class="valorInput">
+    </div>
+    <div class="caixaInput">
+      <label for="card3">Valor C</label><br>
+      <input type="number" id="card3" class="valorInput">
+    </div>
+    <div class="caixaInput">
+      <label for="card4">Valor D</label><br>
+      <input type="number" id="card4" class="valorInput">
+    </div>
+    <div class="caixaInput">
+      <label for="card5">Valor E</label><br>
+      <input type="number" id="card5" class="valorInput">
+    </div>
+
+  </form>
+
+  <br>
+
+  <button onclick="verificaFaltante()">Verificar Faltante</button>
+  <div id="result"></div>
+
+  <script>
+  function verificaFaltante() {
+    let valores = []
+    let valorInputs = document.getElementsByClassName("valorInput")
+    
+    for (let i = 0; i < valorInputs.length; i++) {
+      let value = parseInt(valorInputs[i].value)
+
+      
+      if (isNaN(value) || value < 1 || value > 6) {
+        document.getElementById("result").innerHTML = "Erro: Os valores devem estar entre 1 e 6."
+        return
+      }
+
+      valores.push(value)
+    }
+   
+    for (let i = 1; i <= 6; i++) {
+      let faltante = false
+
+      for (let j = 0; j < valores.length; j++) {
+        if (valores[j] === i) {
+          faltante = true
+          break
+        }
+      }
+
+      if (!faltante) {
+        document.getElementById("result").innerHTML = "O valor faltante é: " + i
+        return
+      }
+    }
+  }
+</script>
+</body>
+</html>
